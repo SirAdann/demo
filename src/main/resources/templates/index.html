@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="..static/images/escudo-uabc-favicon.png"
+	type="image/x-icon" th:href="@{/images/escudo-uabc-favicon.png}">
+<link href="../static/css/bootstrap.min.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+<link href="../static/css/template.css" rel="stylesheet"
+	th:href="@{/css/template.css}" />
+<title>Auditoría Interna</title>
+  <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+  </style>
+
+</head>
+<body>
+	<div class="container-fluid">
+		<header th:insert="fragments/header :: navbar"> </header>
+	</div>
+
+	<div class="main container-fluid">
+	
+	<div class="contenido">
+	
+	
+	
+	<div th:if="${usuario != null}">
+	
+	
+	
+	<table class="table table-hover">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col">Nombre</th>
+									<th scope="col">Apellido Materno</th>
+									<th scope="col">Apellido Paterno</th>
+									<th scope="col">Correo</th>
+							
+								</tr>
+							</thead>
+							<tbody>
+
+
+								<tr >
+
+									<td th:text="${usuario.nombre}"></td>
+									<td th:text="${usuario.apellidoPaterno}"></td>
+									<td th:text="${usuario.apellidoMaterno}"></td>
+									<td th:text="${usuario.correo}"></td>
+									<td th:if="${usuario.estatus==true ? 'Habilitado' : 'Deshabilitado' }">
+								
+							
+								</tr>
+							</tbody>
+						</table>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li th:each="imagenCar : ${imagenes}" data-target="#demo" th:data-slide-to="${imagenCar.orden}" th:if="${imagenCar.orden == 0}" class="active"></li>
+    <!--  <li data-target="#demo" data-slide-to="1"></li>-->
+       <li th:each="imagenCar : ${imagenes}" data-target="#demo" th:data-slide-to="${imagenCar.orden}" th:if="${imagenCar.orden != 0}" ></li>
+   
+  </ul>
+
+<div class="row">
+<div class="col-sm-12">
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+  
+  
+    <div th:each="imagenCar : ${imagenes}" th:if="${imagenCar.orden == 0}" class="carousel-item active">
+    <a th:href="${imagenCar.url}">
+      <img th:src="@{/imagenesCarrousel/{img} (img=${imagenCar.imagen})}" >
+      </a>
+      
+    </div>
+    
+     <div th:each="imagenCar : ${imagenes}" th:if="${imagenCar.orden != 0}" class="carousel-item">
+        <a th:href="${imagenCar.url}">
+      <img th:src="@{/imagenesCarrousel/{img} (img=${imagenCar.imagen})}"  th:href="${imagenCar.url}">
+       </a>
+    </div>
+    <!-- <div class="carousel-item">
+      <img src="/images/2.jpg" alt="Chicago">
+    </div> -->
+   
+   
+   
+   
+  </div>
+  </div>
+</div>
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+
+</div>
+	</div>
+	
+	
+	
+	
+	</div>
+
+
+	<div th:insert="fragments/footer :: footer"></div>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js}"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="../static/js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../static/js/template.js" th:src="@{/js/template.js}"></script>
+
+	<!-- Placed at the end of the document so the pages load faster -->
+</body>
+</html>

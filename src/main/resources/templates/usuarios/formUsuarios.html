@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="stylesheet"
+	th:href="@{//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css}">
+<!--   <link rel="stylesheet" th:href="@{//resources/demos/style.css}">-->
+
+<link rel="shortcut icon" href="..static/images/escudo-uabc-favicon.png"
+	type="image/x-icon" th:href="@{/images/escudo-uabc-favicon.png}">
+<link href="../static/css/bootstrap.min.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+<link href="../static/css/template.css" rel="stylesheet"
+	th:href="@{/css/template.css}" />
+	
+<title>Auditoría Interna</title>
+<style>
+/* Make the image fully responsive */
+.carousel-inner img {
+	width: 100%;
+	height: 100%;
+}
+</style>
+
+</head>
+<body onload="ajustarform()">
+	<div class="container-fluid">
+		<header th:insert="fragments/header :: navbar"> </header>
+	</div>
+
+	<div class="main container-fluid">
+		<!--  <h1 class="titulo-seccion bold text-center">
+		Registro 
+		</h1>-->
+
+		<div class="contenido-formulario">
+			<div class="card">
+				<h5 class="card-header">
+					<strong>Datos del Usuario</strong>
+				</h5>
+				<div class="card-body">
+					<form th:action="@{/usuarios/save}" method=POST
+						th:object="${usuario}" enctype="multipart/form-data">
+						<div th:if="${#fields.hasErrors('*')}" class='alert alert-danger'
+							role='alert'>
+							Por favor corrija los siguientes errores:
+							<ul>
+								<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+							</ul>
+						</div>
+						<div class="row">
+							<div class="col-lg-4 col-md-6">
+								<div class="form-group">
+							
+									<label for="nombre">Nombre</label>
+									 <input type="hidden" th:field="*{idUsuario}">
+									<!-- <input  type="hidden" 
+										class="form-control" th:field="*{fechaRegistro}" name="fechaRegistro"
+										id="fechaRegistro" placeholder="Fecha de registro"
+										>
+						 -->
+									
+									 <input type="text" class="form-control" th:field="*{nombre}" id="nombre"
+										name="nombre" placeholder="Nombre(s)"
+										required="required">
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-6">
+								<div class="form-group">
+									<label for="nombre">Apellido Paterno</label>
+									 <input type="text" class="form-control" th:field="*{apellidoPaterno}" id="apellidoPaterno"
+										name="apellidoPaterno" placeholder="Apellido Paterno"
+										required="required">
+								</div>
+							</div>
+								<div class="col-lg-4 col-md-6">
+								<div class="form-group">
+									<label for="nombre">Apellido Materno</label>
+									 <input type="text" class="form-control" th:field="*{apellidoMaterno}" id="apellidoMaterno"
+										name="apellidoMaterno" placeholder="Apellido Materno"
+										required="required">
+								</div>
+							</div>
+							</div>
+													<div class="row">
+							
+								<div class="col-lg-4 col-md-6">
+								<div class="form-group">
+									<label for="nombre">Correo</label>
+									 <input type="text" class="form-control" th:field="*{correo}" id="correo"
+										name="correo" placeholder="ejemplo@uabc.edu.mx"
+										required="required">
+								</div>
+							</div>
+								<div class="col-lg-4 col-md-6">
+								<div class="form-group">
+									<label for="estatus">Perfil</label> <select
+										class="form-control" th:field="*{perfiles}" name="perfiles"
+										id="perfiles">
+										<option th:each="perfil: ${perfiles}" th:text="${perfil.nombre}" th:value="${perfil.idPerfil}"></option>
+										
+									</select>
+								</div>
+							</div>
+								<div class="col-lg-4 col-md-6">
+								<div class="form-group">
+									<label for="nombre">Estatus</label>
+									 <input type="checkbox" class="form-control" th:field="*{estatus}" id="estatus"
+										name="estatus" >
+								</div>
+							</div>
+						
+						</div>
+						<hr>
+							<div class="row">
+							<div class="col-lg-6 col-md-6">
+								<div class="form-group">
+									<label for="nombre">Usuario</label>
+									 <input type="text" class="form-control" th:field="*{username}" id="username"
+										name="username" placeholder="Usuario"
+										required="required">
+								</div>
+								
+							</div>
+									<div class="col-lg-6 col-md-6">
+								<div class="form-group">
+									<label for="nombre">Contraseña</label>
+									 <input type="password" class="form-control" th:field="*{password}" id="password"
+										name="password" placeholder="contraseña"
+										required="required">
+								</div>
+								
+							</div>
+							</div>
+					
+						
+					
+			
+					
+						
+						
+						
+						<!-- <div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+
+									<label for="video"><strong>Video</strong></label> <input
+										type="file" class="form-control-file" name="video" id="video">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+
+									<label for="material"><strong>Material</strong></label> <input
+										type="file" class="form-control-file" name="material"
+										id="material">
+								</div>
+							</div>
+						</div> -->
+
+						<button type="submit" class="btn btn-primary float-right">Guardar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	</div>
+
+
+
+
+	</div>
+
+
+	<div th:insert="fragments/footer :: footer"></div>
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js}"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="../static/js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../static/js/template.js" th:src="@{/js/template.js}"></script>
+	<script th:src="@{/tinymce/tinymce.min.js}"></script>
+<!--      <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js}"></script>
+        <script th:src="@{../datetimepicker/jquery.datetimepicker.full.js}"></script> -->
+	<script>
+// 		 $(function() {
+// 			$("#fecha").datepicker({
+// 				dateFormat : 'dd-mm-yy'
+// 			});
+// 		}); 
+		
+	/* 	 $(document).ready(function () {
+             $.datetimepicker.setLocale('es');
+             $('#fecha').datetimepicker({value: '2017/04/20 11:22', step: 10});
+         }); */
+         var date = new Date();
+         var day = date.getDate();
+         var month = date.getMonth() + 1;
+         var year = date.getFullYear();
+
+         if (month < 10) month = "0" + month;
+         if (day < 10) day = "0" + day;
+
+         var today = year + "-" + month + "-" + day;
+
+         document.getElementById("fechaRegistro").value = today;
+         
+         
+         
+		$(document).ready(function() {
+			document.getElementById("plat").setAttribute("class", "mostrar");
+			document.getElementById("lug").setAttribute("class", "ocultar");
+		});
+
+		tinymce
+				.init({
+					selector : '#detalle',
+					plugins : "textcolor, table lists code",
+					toolbar : " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\
+		              | bullist numlist outdent indent | forecolor backcolor table code"
+				});
+	</script>
+
+	<!-- Placed at the end of the document so the pages load faster -->
+</body>
+</html>

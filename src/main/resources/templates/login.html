@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<meta name="description" content="">
+	<meta name="author" content="">	
+	<title>Login</title>
+
+<link rel="shortcut icon" href="..static/images/escudo-uabc-favicon.png"
+	type="image/x-icon" th:href="@{/images/escudo-uabc-favicon.png}">
+<link href="../static/css/bootstrap.min.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+<link href="../static/css/template.css" rel="stylesheet"
+	th:href="@{/css/template.css}" />
+	</head>
+
+<body>
+
+<!--ENCABEZADO-->
+
+	<div class="container-fluid">
+		<header th:insert="fragments/header :: navbar"> </header>
+	</div>
+
+
+<!--ENCABEZADO-->
+
+	<div class="container theme-showcase" role="main">
+
+		<hr class="featurette-divider">
+		
+	   <img src="/images/login.png" width="136" height="136" class="center">
+		
+	   <form class="form-signin contenido-formulario" name="form"  th:action="@{/login}" method="post"> 
+	   
+
+			      
+			<label for="username" class="sr-only">Usuario</label>
+			<input type="text" id="username" name="username" class="form-control" placeholder="Usuario" required autofocus>
+			<label for="password" class="sr-only">Contraseña</label>
+			<input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+			
+			<button class="btn btn-lg btn-success btn-block" name="submit" value="ingresar" type="submit" >Entrar</button>
+	  </form>
+
+	</div>
+
+
+<!--/.Footer-->
+   <!--/.Footer-->
+	<div th:insert="fragments/footer :: footer"></div>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js}"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="../static/js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../static/js/template.js" th:src="@{/js/template.js}"></script>
+</div>
+
+
+
+	 
+	
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+</body>
+</html>

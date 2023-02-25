@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="..static/images/escudo-uabc-favicon.png"
+	type="image/x-icon" th:href="@{/images/escudo-uabc-favicon.png}">
+<link href="../static/css/bootstrap.min.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+<link href="../static/css/template.css" rel="stylesheet"
+	th:href="@{/css/template.css}" />
+<link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+	rel="stylesheet">
+
+<title>Auditoría Interna</title>
+<style>
+/* Make the image fully responsive */
+.carousel-inner img {
+	width: 100%;
+	height: 100%;
+}
+</style>
+
+</head>
+<body>
+	<div class="container-fluid">
+		<header th:insert="fragments/header :: navbar"> </header>
+	</div>
+
+	<div class="main container-fluid">
+		<h1 class="titulo-seccion bold text-center">Usuarios</h1>
+
+		<div class="contenido-listado">
+			<div class="card">
+				<div class="card-body">
+					<a class="btn btn-primary" th:href="@{/usuarios/create}"
+						title="Crear nuevo usuario" role="button"><i
+						class="fas fa-file" aria-hidden="true"></i> Nuevo</a>
+					<hr>
+							<div th:if="${msgregistro != null}" class='alert alert-success'
+						th:text="${msgregistro}" role='alert'></div>
+					<div th:if="${msgborrado != null}" class='alert alert-danger'
+						th:text="${msgborrado}" role='alert'></div>
+
+					<div th:if="${msg != null}" class='alert alert-warning text-center'
+						th:text="${msg}" role='alert'></div>
+
+					<div th:if="${msg == null}">
+						<!-- TABLA DE LISTA DE CURSOS -->
+						<table class="table table-hover">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col">Nombre</th>
+									<th scope="col">Apellido Materno</th>
+									<th scope="col">Apellido Paterno</th>
+									<th scope="col">Correo</th>
+<!-- 									<th scope="col">Estatus</th> -->
+<!-- 									<th scope="col">Perfil</th> -->
+									
+									<th scope="col">Opciones</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+
+
+								<tr th:each="usuario : ${usuarios}">
+
+									<td th:text="${usuario.nombre}"></td>
+									<td th:text="${usuario.apellidoPaterno}"></td>
+									<td th:text="${usuario.apellidoMaterno}"></td>
+									<td th:text="${usuario.correo}"></td>
+									<!-- <td th:if="${usuario.estatus==true ? 'Habilitado' : 'Deshabilitado' }"> -->
+								
+<!-- 									<td th:text="${#dates.format(usuario.fechaRegistro,'dd-MM-yyyy')}"></td> -->
+									<td><a
+										th:href="@{/usuarios/Editar/{id} (id=${usuario.idUsuario})}"
+										class="btn btn-success" role="button"
+										title="Editar el registro."><i class="fas fa-pencil-alt"
+											aria-hidden="true"></i></a> <a
+										th:href="@{/usuarios/delete/{id} (id=${usuario.idUsuario}) }"
+										onclick="return confirm('¿Estas seguro?')"
+										class="btn btn-danger " role="button"
+										title="Eliminar el registro."><i class="fas fa-trash"
+											aria-hidden="true"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- -->
+
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+
+
+
+
+	</div>
+
+
+	<div th:insert="fragments/footer :: footer"></div>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js}"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="../static/js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../static/js/template.js" th:src="@{/js/template.js}"></script>
+
+	<!-- Placed at the end of the document so the pages load faster -->
+</body>
+</html>
