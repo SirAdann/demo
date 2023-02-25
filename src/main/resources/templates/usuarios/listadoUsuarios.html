@@ -80,7 +80,8 @@
 										th:href="@{/usuarios/Editar/{id} (id=${usuario.idUsuario})}"
 										class="btn btn-success" role="button"
 										title="Editar el registro."><i class="fas fa-pencil-alt"
-											aria-hidden="true"></i></a> <a
+											aria-hidden="true"></i></a>
+										<a th:if="${usuario.username!='admin'}"
 										th:href="@{/usuarios/delete/{id} (id=${usuario.idUsuario}) }"
 										onclick="return confirm('¿Estas seguro?')"
 										class="btn btn-danger " role="button"
